@@ -1,0 +1,4 @@
+pyyaml
+mxnet-cu75==1.0.0
+numpy>=1.12
+typing

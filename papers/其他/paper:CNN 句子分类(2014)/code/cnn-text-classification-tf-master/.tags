@@ -1,0 +1,81 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+FLAGS	eval.py	/^FLAGS = tf.flags.FLAGS$/;"	v
+FLAGS	train.py	/^FLAGS = tf.flags.FLAGS$/;"	v
+TextCNN	text_cnn.py	/^class TextCNN(object):$/;"	c
+__init__	text_cnn.py	/^    def __init__($/;"	m	class:TextCNN
+acc_summary	train.py	/^        acc_summary = tf.summary.scalar("accuracy", cnn.accuracy)$/;"	v
+all_predictions	eval.py	/^            all_predictions = np.concatenate([all_predictions, batch_predictions])$/;"	v
+all_predictions	eval.py	/^        all_predictions = []$/;"	v
+allow_soft_placement	eval.py	/^      allow_soft_placement=FLAGS.allow_soft_placement,$/;"	v
+allow_soft_placement	train.py	/^      allow_soft_placement=FLAGS.allow_soft_placement,$/;"	v
+batch_iter	data_helpers.py	/^def batch_iter(data, batch_size, num_epochs, shuffle=True):$/;"	f
+batch_predictions	eval.py	/^            batch_predictions = sess.run(predictions, {input_x: x_test_batch, dropout_keep_prob: 1.0})$/;"	v
+batches	eval.py	/^        batches = data_helpers.batch_iter(list(x_test), FLAGS.batch_size, 1, shuffle=False)$/;"	v
+batches	train.py	/^        batches = data_helpers.batch_iter($/;"	v
+checkpoint_dir	train.py	/^        checkpoint_dir = os.path.abspath(os.path.join(out_dir, "checkpoints"))$/;"	v
+checkpoint_file	eval.py	/^checkpoint_file = tf.train.latest_checkpoint(FLAGS.checkpoint_dir)$/;"	v
+checkpoint_prefix	train.py	/^        checkpoint_prefix = os.path.join(checkpoint_dir, "model")$/;"	v
+clean_str	data_helpers.py	/^def clean_str(string):$/;"	f
+cnn	train.py	/^        cnn = TextCNN($/;"	v
+correct_predictions	eval.py	/^    correct_predictions = float(sum(all_predictions == y_test))$/;"	v
+current_step	train.py	/^            current_step = tf.train.global_step(sess, global_step)$/;"	v
+dev_sample_index	train.py	/^dev_sample_index = -1 * int(FLAGS.dev_sample_percentage * float(len(y)))$/;"	v
+dev_step	train.py	/^        def dev_step(x_batch, y_batch, writer=None):$/;"	f
+dev_summary_dir	train.py	/^        dev_summary_dir = os.path.join(out_dir, "summaries", "dev")$/;"	v
+dev_summary_op	train.py	/^        dev_summary_op = tf.summary.merge([loss_summary, acc_summary])$/;"	v
+dev_summary_writer	train.py	/^        dev_summary_writer = tf.summary.FileWriter(dev_summary_dir, sess.graph)$/;"	v
+dropout_keep_prob	eval.py	/^        dropout_keep_prob = graph.get_operation_by_name("dropout_keep_prob").outputs[0]$/;"	v
+embedding_size	train.py	/^            embedding_size=FLAGS.embedding_dim,$/;"	v
+filter_sizes	train.py	/^            filter_sizes=list(map(int, FLAGS.filter_sizes.split(","))),$/;"	v
+global_step	train.py	/^        global_step = tf.Variable(0, name="global_step", trainable=False)$/;"	v
+grad_hist_summary	train.py	/^                grad_hist_summary = tf.summary.histogram("{}\/grad\/hist".format(v.name), g)$/;"	v
+grad_summaries	train.py	/^        grad_summaries = []$/;"	v
+grad_summaries_merged	train.py	/^        grad_summaries_merged = tf.summary.merge(grad_summaries)$/;"	v
+grads_and_vars	train.py	/^        grads_and_vars = optimizer.compute_gradients(cnn.loss)$/;"	v
+graph	eval.py	/^graph = tf.Graph()$/;"	v
+input_x	eval.py	/^        input_x = graph.get_operation_by_name("input_x").outputs[0]$/;"	v
+l2_reg_lambda	train.py	/^            l2_reg_lambda=FLAGS.l2_reg_lambda)$/;"	v
+load_data_and_labels	data_helpers.py	/^def load_data_and_labels(positive_data_file, negative_data_file):$/;"	f
+log_device_placement	eval.py	/^      log_device_placement=FLAGS.log_device_placement)$/;"	v
+log_device_placement	train.py	/^      log_device_placement=FLAGS.log_device_placement)$/;"	v
+loss_summary	train.py	/^        loss_summary = tf.summary.scalar("loss", cnn.loss)$/;"	v
+max_document_length	train.py	/^max_document_length = max([len(x.split(" ")) for x in x_text])$/;"	v
+num_classes	train.py	/^            num_classes=y_train.shape[1],$/;"	v
+num_filters	train.py	/^            num_filters=FLAGS.num_filters,$/;"	v
+optimizer	train.py	/^        optimizer = tf.train.AdamOptimizer(1e-3)$/;"	v
+out_dir	train.py	/^        out_dir = os.path.abspath(os.path.join(os.path.curdir, "runs", timestamp))$/;"	v
+out_path	eval.py	/^out_path = os.path.join(FLAGS.checkpoint_dir, "..", "prediction.csv")$/;"	v
+path	train.py	/^                path = saver.save(sess, checkpoint_prefix, global_step=current_step)$/;"	v
+predictions	eval.py	/^        predictions = graph.get_operation_by_name("output\/predictions").outputs[0]$/;"	v
+predictions_human_readable	eval.py	/^predictions_human_readable = np.column_stack((np.array(x_raw), all_predictions))$/;"	v
+saver	eval.py	/^        saver = tf.train.import_meta_graph("{}.meta".format(checkpoint_file))$/;"	v
+saver	train.py	/^        saver = tf.train.Saver(tf.global_variables(), max_to_keep=FLAGS.num_checkpoints)$/;"	v
+sequence_length	train.py	/^            sequence_length=x_train.shape[1],$/;"	v
+sess	eval.py	/^    sess = tf.Session(config=session_conf)$/;"	v
+sess	train.py	/^    sess = tf.Session(config=session_conf)$/;"	v
+session_conf	eval.py	/^    session_conf = tf.ConfigProto($/;"	v
+session_conf	train.py	/^    session_conf = tf.ConfigProto($/;"	v
+shuffle_indices	train.py	/^shuffle_indices = np.random.permutation(np.arange(len(y)))$/;"	v
+sparsity_summary	train.py	/^                sparsity_summary = tf.summary.scalar("{}\/grad\/sparsity".format(v.name), tf.nn.zero_fraction(g))$/;"	v
+timestamp	train.py	/^        timestamp = str(int(time.time()))$/;"	v
+train_op	train.py	/^        train_op = optimizer.apply_gradients(grads_and_vars, global_step=global_step)$/;"	v
+train_step	train.py	/^        def train_step(x_batch, y_batch):$/;"	f
+train_summary_dir	train.py	/^        train_summary_dir = os.path.join(out_dir, "summaries", "train")$/;"	v
+train_summary_op	train.py	/^        train_summary_op = tf.summary.merge([loss_summary, acc_summary, grad_summaries_merged])$/;"	v
+train_summary_writer	train.py	/^        train_summary_writer = tf.summary.FileWriter(train_summary_dir, sess.graph)$/;"	v
+vocab_path	eval.py	/^vocab_path = os.path.join(FLAGS.checkpoint_dir, "..", "vocab")$/;"	v
+vocab_processor	eval.py	/^vocab_processor = learn.preprocessing.VocabularyProcessor.restore(vocab_path)$/;"	v
+vocab_processor	train.py	/^vocab_processor = learn.preprocessing.VocabularyProcessor(max_document_length)$/;"	v
+vocab_size	train.py	/^            vocab_size=len(vocab_processor.vocabulary_),$/;"	v
+x	train.py	/^x = np.array(list(vocab_processor.fit_transform(x_text)))$/;"	v
+x_raw	eval.py	/^    x_raw = ["a masterpiece four years in the making", "everything is off."]$/;"	v
+x_shuffled	train.py	/^x_shuffled = x[shuffle_indices]$/;"	v
+x_test	eval.py	/^x_test = np.array(list(vocab_processor.transform(x_raw)))$/;"	v
+y_shuffled	train.py	/^y_shuffled = y[shuffle_indices]$/;"	v
+y_test	eval.py	/^    y_test = [1, 0]$/;"	v
+y_test	eval.py	/^    y_test = np.argmax(y_test, axis=1)$/;"	v
