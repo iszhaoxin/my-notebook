@@ -406,3 +406,178 @@ TransE 规定, node  embedding 的 L2 norm 必须是1. 在这里作者对 attrib
 
 ![](./pictures/27)
 
+
+
+
+
+## *Iterative Entity Alignment via Joint Knowledge Embeddings*
+
+
+
+### 1. Introduction
+
+这个也是同样的任务. 
+
+使用的 motivation 和第一个相像. 
+
+使用的数据集是 DBP-1, DBP-2, DBP-3, DBP-4.
+
+是从 FB15K 中制作的 dummy dataset. 
+
+其统计信息如下:
+
+![](./pictures/28)
+
+$O:$ overlap rate, 即两个子图中的重合率.
+
+$\mathbb{L}$ : seed alignment set 的集合
+
+$T_1,T_2$ : 两个子图中的 triplets. 
+
+大概就是从一个 FB15K 中分出两个子图, 然后将这两个子图按照一定量的 seed aligned entities 进行融合. 
+
+
+
+### 2. Methods
+
+#### 2.1 Overview
+
+分为三步:
+
+- Knowledge embeddings
+- Joint embeddings
+- Iterative alignment
+
+损失公式为 : ![](./pictures/29)
+
+这里相比与之前的手法, 加了一步 Iterative alignment. 即, 在训练过程中不断使用已经获取的Alignment entities pair 作为新的 seed 去增强学习. 另外在其他的两步也有小出入.
+
+**概览图如下:**
+
+![](./pictures/30)
+
+#### 2.2 Details
+
+##### 1) Knowledge Embeddings
+
+- 基本思路
+
+  这里做了一个基础方法的改变, 将 TransE 变为了 PTransE. 
+
+  PTransE 的 观点是 : 考虑到了组合关系对 embedding 的影响. 
+
+  即, 不仅仅 $\{h,r,t\}$ 中的 r 对 h 和 t 的预测有影响, $\{h,r_1,e\}, \{e,r_2,t\}$ 中的 $(r_1,r_2)$ 对 h 和 t 的预测也有影响. 
+
+- 实现形式:
+
+  这里在 node embedding 的问题上提出了一个 新的损失函数. 
+
+  - **P函数**
+
+    首先对于 $(r_1,r_2)$ 设定一个 identification 的方式, 这里采用p函数代替:
+
+    $p=f(r_1, r_2)$ . 这里的函数的话参照原论文有各种各样的形式. Mean, product 或是 RNN 都可以. 
+
+    那么对于一个 $\{h,r,t\}$ 中的 $(h,t)$而言,  其可能有多个 $(r_1,r_2)$ 对应, 因此, 这里需要一个集合去定义 h与t 之间的二距关系:
+    $$
+    P(h,t)=\{p|\forall e\in E,r_1,r_2\in R, (h,r_1,e), (h,r_2,e)\in T, p=f(r_1,r_2)\}
+    $$
+
+  - **Triplet loss**
+
+    对于单个 triplet 这里采用了, TransE 一样的方式, 不过加上了远距离(2) 的距离关系, 即:
+
+    ![](./pictures/31) :
+
+    那么对于  $(h,t)$ 中所有可能的 $(r_1,r_2)$ 来说, 就有:
+
+    ![](./pictures/32)
+
+    其中, Z 是 normalization 因子. 
+
+  - **综合 loss**
+
+    再加上一开始 TransE 的单距离loss,  就有了最后的 loss.
+
+    ![](./pictures/33)
+
+##### 2) Joint Embeddings
+
+这里和前面没有什么不一样. 
+
+三种方法:
+
+- **Translation-based Model:**
+
+  在 MTransE 中提到过. $(e_1,e_2)$ 是一个 seed aligned entities pair
+
+  ![](./pictures/34)
+
+- **Linear Transformation Model**:
+
+  在 MTransE 中提到过. 
+
+  ![](./pictures/35)
+
+**基于以上两种方法的 Joint loss 为 :**
+
+![](./pictures/37)
+
+- **Parameter Sharing Model :**
+
+  在 JAPE 中提到过:
+
+  ![](./pictures/36)
+
+  **这个方法的 joint loss 是融合在 $\mathcal{K}_p$ 中的**, 因此这里的 $\mathcal{J}_{T/L}=0$.
+
+
+
+##### 3) Iterative Alignment
+
+这里说的是, 如何利用学习中学得的 Alignment 去增强后续学习的方法:
+
+###### 1. 距离计算
+
+通过上面的三个方法, 可以计算出两个图中任意两个 node 之间的 align 距离. 
+
+> 对于前两种方法要加上转换, 后一种方法直接计算距离就好.
+
+这里用 $E(e_1,e_2)$ 来表示两个图中的 node 的距离:
+
+![](./pictures/38)
+
+###### 2. Threshold
+
+对判断 $(e_1,e_2)$ 是不是 Alignment , 这里通过设置阈值的方法去做. 
+
+如果 $E(e_1,e_2) < \theta$. 则在下一轮学习中, 我们将这个 $e_1,e_2$ 作为 seed 去使用. 
+
+###### 3. 使用seed 的方法
+
+这里分了两种, Hard Alignment 和 Soft Alignment.
+
+- **Hard Alignment**
+
+  这里就是直接在新的一轮迭代中将新的 seed 用 前面的方法加入上面的 两种loss计算即可. 即: $\mathcal{J}_S=0$
+
+- **Soft Alignment**
+
+  Hard Alignment 会出现 error propagation 的问题, 因此这里对每个新的 seed 加上了 Reliablity 系数, 使用了 sigmod 函数:
+
+  ![](./pictures/39)
+
+  下面就是正常的加 PTransE 的 loss. 
+
+  ![](./pictures/40)
+
+
+
+### 3. Experiment
+
+![](./pictures/41)
+
+
+
+
+
