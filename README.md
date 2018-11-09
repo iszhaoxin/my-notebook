@@ -86,6 +86,7 @@ Notebooks of some important papers I have read about NLP and ML, DL
 - [Dependency-Based Word Embeddings](http://www.aclweb.org/anthology/P14-2050)
 - [Deep contextualized word representations](https://arxiv.org/abs/1802.05365)
 - [Improved Word Representation Learning with Sememes](http://nlp.csai.tsinghua.edu.cn/~xrb/publications/ACL-17_sememe.pdf)
+- [Hubs in Space: Popular Nearest Neighbors in High-Dimensional Data](http://www.jmlr.org/papers/v11/radovanovic10a.html)
 
 #### 2.5 Application of graph neural network(GNN) in NLP
 
@@ -137,6 +138,16 @@ Notebooks of some important papers I have read about NLP and ML, DL
 - [Reinforced Mnemonic Reader for Machine Reading Comprehension](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwj8pvzg3qreAhUIA4gKHZUIDV4QFjAAegQICRAB&url=https%3A%2F%2Farxiv.org%2Fabs%2F1705.02798&usg=AOvVaw0oP6-cFd57YuaEwCuCsA0X)
 - [Teaching Machines to Read and Comprehend](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=2ahUKEwisvbrn36reAhWLf7wKHaw6CSwQFjAAegQICRAB&url=https%3A%2F%2Farxiv.org%2Fabs%2F1506.03340&usg=AOvVaw0EdBVMy_x4DXAksZuj0EaB)
 
+
+#### 2.14 Entity alignment
+
+- BIG-ALIGN: Fast Bipartite Graph Alignment
+- Cross-lingual Knowledge Graph Alignment via Graph Convolutional Networks
+- LinkNBed: Multi-Graph Representation Learning with Entity Linkage
+- A Joint Embedding Method for Entity Alignment of Knowledge Bases
+- Cross-lingual Entity Alignment via Joint Attribute-Preserving Embedding
+- Iterative Entity Alignment via Joint Knowledge Embeddings
+- Multilingual Knowledge Graph Embeddings for Cross-lingual Knowledge Alignment
 
 
 ### 3. Topics
