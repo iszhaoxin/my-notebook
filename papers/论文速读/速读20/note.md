@@ -118,6 +118,9 @@ Four questions :
 
 
 
+
+
+
 ### *Multilingual Knowledge Graph Embeddings for Cross-lingual Knowledge Alignment*
 
 #### 1. What is the task tackled in this paper ? 
@@ -153,6 +156,9 @@ Four questions :
       $$
       S = ||M_{ij}^eh-h'|| + ||M_{ij}^et-t'||
       $$
+
+
+
 
 
 
@@ -390,6 +396,9 @@ Those problems can be seen as one-shot problem.
 
 
 
+
+
+
 ### *Incorporating GAN for Negative Sampling in Knowledge Representation Learning*
 
 #### 1. What is the task tackled in this paper ? 
@@ -403,17 +412,15 @@ Those problems can be seen as one-shot problem.
 
 #### 3. How to solve it/what is the approach of this paper ?
 
-- Propose a knowledge embedding framework based on GAN 
-  - The discriminator in it is trained to minimize the margin-based ranking loss as in the previous models.
-  - The generator learns mining quality negative samples which can bring non-zero loss to the discriminator. 
+- Goal : Provide consistent non-zero loss for training. 
+
+
+- Methods : Use generative adversarial deep models (KBGAN) to improve the training, which generator in GAN can provide high-quality negative sampling. 
 
 
 
 
-
-
-
-### Analysis of the Impact of Negative Sampling on Link Prediction in Knowledge Graphs* 
+### *Analysis of the Impact of Negative Sampling on Link Prediction in Knowledge Graphs* 
 
 #### 1. What is the task tackled in this paper ? 
 
@@ -435,7 +442,9 @@ Those problems can be seen as one-shot problem.
 - Near miss sampling is the best. 
 
 
-### *Embedding Multimodal Relational Data for Knowledge Base Completion*
+
+
+### Embedding Multimodal Relational Data for Knowledge Base Completion*
 
 #### 1. What is the task tackled in this paper ? 
 
@@ -472,3 +481,89 @@ Representing entities and relations in an embedding space
   ![](./pictures/10.png)
 
   ​
+
+
+
+
+
+
+
+
+### *Learning Entity and Relation Embeddings for knowledge Graph Completion*
+
+#### 1. What is the task tackled in this paper ? 
+
+- Embedding a large scale knowledge graph composed of entities and relations into a continuous vector space
+
+#### 2. What is the research question in this paper ? 
+
+- An entity may have multiple aspects, and various relations focus on different aspects of entities. But both TransE and TransH assume embeddings of entities kand relations being in the same space. 
+
+#### 3. How to solve it/what is the approach of this paper ?
+
+- Aim:
+
+  Provide a methods which can transform one entity into different spaces by relation. 
+
+
+- Methods : 
+
+  Propose a new method, which models entities and relations in distinct spaces.
+
+  Project entity embedding to relation space before caculate margin-loss:
+
+  - Projection : 
+
+  $$
+  h_r = hM_r, t_r=tM_r
+  $$
+
+  - Margin-based loss :
+    $$
+    f_r(h,t）＝||h_r+r-t_t||_2
+    $$
+
+
+
+### *KBGAN : Adversarial Learning for Knowledge Graph Embedding*
+
+[KBGAN: Adversarial Learning for Knowledge Graph Embeddings](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwjouO3XoeLeAhXFbbwKHZUUAi4QFjAAegQIChAB&url=https%3A%2F%2Farxiv.org%2Fabs%2F1711.04071&usg=AOvVaw0YF7kspjO3K5DKiIMzCsZC)
+
+#### 1. What is the task tackled in this paper ? 
+
+- Knowledge representation : model knowledge graph by encoding entities and relations into a low dimensional space.
+
+#### 2. What is the research question in this paper ? 
+
+- Widely used random sampling method is not ideal, because the sampled entity could be completely unrelated to the head and the target relation, and thus the quality of  randomly generated negative examples is often poor. 
+
+#### 3. How to solve it/what is the approach of this paper ?
+
+- Goal : Provide consistent non-zero loss for training. 
+
+
+- Methods : Use generative adversarial deep models (KBGAN) to improve the training, which generator in GAN can provide high-quality negative sampling. 
+
+
+
+
+
+
+### *Differentiating Concepts and Instances for Knowledge Graph Embedding*
+
+#### 1. What is the task tackled in this paper ? 
+
+- Knowledge Graph Embedding
+
+#### 2. What is the research question in this paper ? 
+
+- The difference between concepts and instances is ignored in knowledge graph embedding model. 
+- Note : the difference between concepts and instances is that instance is concretization of concept, for example, two entities which connected by "InstanceOf". 
+
+#### 3. How to solve it/what is the approach of this paper ?
+
+- Goal : Design a geometry structure which have ability to model concepts and instances. 
+- Method : Propose a TransC model which can model two kinds of relation:
+  - [InstanceOf] : Use a sphere to express concepts. And a instance should be one point inside the sphere. 
+  - [SubclassOf] : The size of sphere is defined by [SubclassOf] relation, which both head and tail are concepts. 
+

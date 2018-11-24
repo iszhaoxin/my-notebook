@@ -114,10 +114,6 @@ $$
 
 
 
-#### 
-
-#### 
-
 ### 2. Topology Space 定义
 
 #### 2.1 Metric space
@@ -135,6 +131,32 @@ Metric space 是指, 对于 集合 X 上的每一对点之间的距离, 都是�
 ![](./pictures/1)
 
 注意, 一个 metric space 中的 metric function 只能有一个.
+
+##### 3) 注解
+
+Metric space 中与 group 定义的一个很大不同在于 : 
+
+**Metric 的定义没有 group 中的 operator 中的限制那么强.** 
+
+拿 subset/subgroup 来举例:
+
+在 代数 中, subgroup 这个概念, 必须要满足, $ab\in SG, \forall a,b\in G$. 
+
+但是在 metric space 中就没有这样的需要. 任何一个子集都可以作为metric space 的 subspace. 
+
+#### 2.2 Euclidean metric
+
+就是满足五条基本原理的空间:
+
+1. A straight line segment can be drawn joining any two points.
+2. Any straight line segment can be extended indefinitely in a straight line.
+3. Given any straight line segment, a circle can be drawn having the segment as radius and one endpoint as center.
+4. All right angles are congruent. ( 所有的直角是一致的。 )
+5. If two lines are drawn which intersect a third in such a way that the sum of the inner angles on one side is less than two right angles, then the two lines inevitably must intersect each other on that side if extended far enough. This postulate is equivalent to what is known as the parallel postulate.  (平行的直线不会相交)
+
+其中前四条是所有的空间的基本公理, 但是第五条只在欧式空间成立. 而在其他空间都是不成立的. 
+
+#### 2.3 Graph as a metric 
 
 
 
@@ -251,4 +273,4 @@ In topology and related branches of mathematics, a topological space may be **de
 
 满足以上三个性质的函数有时称为**双连续**。**自同胚**就是从一个拓扑空间到它本身的同胚。同胚形成了所有拓扑空间的[类](https://zh.wikipedia.org/wiki/%E7%B1%BB_(%E6%95%B0%E5%AD%A6))上的[等价关系](https://zh.wikipedia.org/wiki/%E7%AD%89%E4%BB%B7%E5%85%B3%E7%B3%BB)。所得到的[等价类](https://zh.wikipedia.org/wiki/%E7%AD%89%E4%BB%B7%E7%B1%BB)称为**同胚类**。
 
-### 
+### ****

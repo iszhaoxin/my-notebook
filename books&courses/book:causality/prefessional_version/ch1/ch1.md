@@ -228,7 +228,7 @@ s 就是 贝叶斯网络上除了 X,Y 之外所有变量的集合.
 
 ###### 1> 模块性
 
-由于 parent-child 之间的稳定以及自治的物理机制. 在不改变其他变量之间分布的情况下, 单独改变一个 parent-child 之间的分布是**有可能的 ( conceivable ) .** 
+由于 parent-child 之间的稳定以及自治的物理机制. 在不改变其他变量之间分布的独立性的情况下, 单独改变一个 parent-child 之间的分布是**有可能的 ( conceivable ) .** 
 
 ###### 2> Informative
 
