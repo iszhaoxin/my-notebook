@@ -1,6 +1,6 @@
 ## My-notebooks
 
-These are the notebooks about what I have read for quickly recall when I want to check sone points I have learned. 
+These are the notebooks what I have read for quick recall whenever I want to check sone points I have learned. 
 
 **All IN CHINESE**
 
